@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Sparkle
+// import Sparkle
 import Preferences
 
 class StatusItemManager: NSObject {
@@ -70,7 +70,7 @@ extension StatusItemManager : NSMenuDelegate {
     }
     
     @objc func checkForUpdatesClick() {
-        SUUpdater.shared()?.checkForUpdates(nil)
+        // SUUpdater.shared()?.checkForUpdates(nil)
     }
     
     @objc func quitClick() {

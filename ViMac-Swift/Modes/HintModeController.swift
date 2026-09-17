@@ -9,7 +9,6 @@
 import Cocoa
 import RxSwift
 import os
-import Segment
 
 extension NSEvent {
     static func localEventMonitor(matching: EventTypeMask) -> Observable<NSEvent> {
@@ -218,10 +217,7 @@ class HintModeController: ModeController {
 
         activated = false
         
-        Analytics.shared().track("Hint Mode Deactivated", properties: [
-            "Target Application": self.app?.bundleIdentifier as Any
-        ])
-        
+        // Removed Analytics track        
         HideCursorGlobally.unhide()
         
         ui.hide()
@@ -249,9 +245,7 @@ class HintModeController: ModeController {
             self.deactivate()
         case .rotate:
             guard let ui = ui else { return }
-            Analytics.shared().track("Hint Mode Rotated Hints", properties: [
-                "Target Application": self.app?.bundleIdentifier as Any
-            ])
+            // Removed Analytics track
             ui.rotateHints()
         case .backspace:
             guard let ui = ui,
@@ -269,20 +263,14 @@ class HintModeController: ModeController {
             let hintsWithInputAsPrefix = hints.filter { $0.text.starts(with: newInput.uppercased()) }
 
             if hintsWithInputAsPrefix.count == 0 {
-                Analytics.shared().track("Hint Mode Deadend", properties: [
-                    "Target Application": app?.bundleIdentifier as Any
-                ])
-                self.deactivate()
+                // Removed Analytics track                self.deactivate()
                 return
             }
 
             let matchingHint = hintsWithInputAsPrefix.first(where: { $0.text == newInput.uppercased() })
 
             if let matchingHint = matchingHint {
-                Analytics.shared().track("Hint Mode Action Performed", properties: [
-                    "Target Application": app?.bundleIdentifier as Any,
-                    "Hint Action": action.rawValue
-                ])
+                // Removed Analytics track
                 
                 self.deactivate()
                 performHintAction(matchingHint, action: action)

@@ -8,7 +8,6 @@
 
 import Cocoa
 import RxSwift
-import Segment
 
 class ScrollModeActiveViewController: NSViewController {
     private let scrollAreas: [Element]
@@ -53,7 +52,7 @@ class ScrollModeActiveViewController: NSViewController {
     }
     
     private func activateNextScrollArea() {
-        Analytics.shared().track("Scroll Mode Cycle Scroll Area")
+        // Removed Analytics track
         
         activeScrollAreaIndex = (activeScrollAreaIndex + 1) % scrollAreas.count
         setActiveScrollArea(activeScrollAreaIndex)

@@ -10,10 +10,9 @@ import Cocoa
 import AXSwift
 import RxSwift
 import MASShortcut
-import Sparkle
+// Removed Sparkle import
 import LaunchAtLogin
 import Preferences
-import Segment
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -56,10 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        let configuration = AnalyticsConfiguration(writeKey: "cjSicRrQ0dUgFkhmjDDur7974VfQKTlX")
-        configuration.trackApplicationLifecycleEvents = true // Enable this to record certain application events automatically!
-        configuration.recordScreenViews = true // Enable this to record screen views automatically!
-        Analytics.setup(with: configuration)
+        // Removed Analytics setup
         
         reportConfiguration()
         
@@ -81,7 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         UIElement.globalMessagingTimeout = 1
         
-        self.checkForUpdatesInBackground()
+        // Removed checkForUpdatesInBackground
         self.modeCoordinator = ModeCoordinator()
         self.setupWindowEventAndShortcutObservables()
         self.setupAXAttributeObservables()
@@ -271,11 +267,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
     }
     
-    func checkForUpdatesInBackground() {
-        SUUpdater.shared()?.delegate = self
-        SUUpdater.shared()?.sendsSystemProfile = true
-        SUUpdater.shared()?.checkForUpdatesInBackground()
-    }
+    // Removed checkForUpdatesInBackground method
 
     func pollAccessibility(completion: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -295,16 +287,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func reportConfiguration() {
-        Analytics.shared().identify(nil, traits: [
-            "Launch At Login": UserDefaults.standard.bool(forKey: Utils.shouldLaunchOnStartupKey),
-            "Force KB Layout ID": UserDefaults.standard.string(forKey: Utils.forceKeyboardLayoutKey),
-            "Hint Mode Key Sequence Enabled": UserDefaultsProperties.keySequenceHintModeEnabled.read(),
-            "Scroll Mode Key Sequence Enabled": UserDefaultsProperties.keySequenceScrollModeEnabled.read(),
-            "Hint Mode Key Sequence": UserDefaultsProperties.keySequenceHintMode.read(),
-            "Scroll Mode Key Sequence": UserDefaultsProperties.keySequenceScrollMode.read(),
-            "Non Native Support Enabled": UserDefaultsProperties.AXEnhancedUserInterfaceEnabled.read(),
-            "Electron Support Enabled": UserDefaultsProperties.AXManualAccessibilityEnabled.read()
-        ])
+        // Removed Analytics.shared().identify
     }
 }
 
@@ -324,5 +307,4 @@ extension AppDelegate : NSWindowDelegate {
     }
 }
 
-extension AppDelegate : SUUpdaterDelegate {
-}
+

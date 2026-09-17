@@ -6,7 +6,8 @@
 //  Copyright © 2020 Dexter Leng. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

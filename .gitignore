@@ -45,3 +45,7 @@ Backup[ ]of[ ]*.key/
 Backup[ ]of[ ]*.numbers/
 
 Pods/
+
+# Carthage build artifacts
+Carthage/Build/
+Carthage/Checkouts/**/.build/

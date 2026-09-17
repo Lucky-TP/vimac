@@ -10,7 +10,6 @@ import Carbon
 import Cocoa
 import AXSwift
 import RxSwift
-import Segment
 import os
 import UserNotifications
 
@@ -114,10 +113,7 @@ class ModeCoordinator: ModeControllerDelegate {
         
         beforeModeActivation()
         
-        Analytics.shared().track("Scroll Mode Activated", properties: [
-            "Target Application": frontmostApp.bundleIdentifier as Any,
-            "Activation Mechanism": mechanism
-        ])
+        // Removed Analytics track
         
         modeController = ScrollModeController(window: focusedWindow)
         modeController?.delegate = self
@@ -142,10 +138,7 @@ class ModeCoordinator: ModeControllerDelegate {
         
         beforeModeActivation()
         
-        Analytics.shared().track("Hint Mode Activated", properties: [
-            "Target Application": app?.bundleIdentifier as Any,
-            "Activation Mechanism": mechanism
-        ])
+        // Removed Analytics track
         
         let activationCount = UserDefaults.standard.integer(forKey: "hintModeActivationCount")
         UserDefaults.standard.set(activationCount + 1, forKey: "hintModeActivationCount")
@@ -182,7 +175,7 @@ class ModeCoordinator: ModeControllerDelegate {
     }
     
     func showPMFSurvey() {
-        Analytics.shared().track("PMF Survey Alert Shown")
+        // Removed PMF Survey Alert Shown
         
         let alert = NSAlert()
         alert.messageText = "Congrats on hitting 350 activations! 🚀"
@@ -192,12 +185,12 @@ class ModeCoordinator: ModeControllerDelegate {
         alert.addButton(withTitle: "No")
         let response = alert.runModal()
         if response == .alertFirstButtonReturn {
-            Analytics.shared().track("Opening PMF Survey")
+            // Removed Opening PMF Survey
 
-            let url = URL(string: "https://vimacapp.com/pmf-survey?anon-id=\(Analytics.shared().getAnonymousId())")!
+            let url = URL(string: "https://vimacapp.com/pmf-survey")!
             _ = NSWorkspace.shared.open(url)
         } else {
-            Analytics.shared().track("PMF Survey Alert Dismissed")
+            // Removed PMF Survey Alert Dismissed
         }
     }
     
