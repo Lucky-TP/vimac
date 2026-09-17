@@ -80,7 +80,7 @@ class ChunkyScroller: Scroller {
                 yAxis = -yAxis
             }
             
-            frequency = 1.0 / 50.0
+            frequency = 1.0 / 120.0
         }
         else {
             frequency = 0.25
@@ -103,6 +103,8 @@ class ChunkyScroller: Scroller {
     
     @objc func emitScrollEvent() {
         let event = CGEvent.init(scrollWheelEvent2Source: nil, units: .pixel, wheelCount: 2, wheel1: yAxis, wheel2: xAxis, wheel3: 0)!
+        event.setIntegerValueField(.scrollWheelEventIsContinuous, value: 1)
+
         event.post(tap: .cghidEventTap)
     }
     
