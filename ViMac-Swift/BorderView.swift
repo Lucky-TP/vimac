@@ -9,8 +9,8 @@
 import Cocoa
 
 class BorderView: NSView {
-    let SIZE = CGFloat(6)
-    let borderColor = NSColor.systemYellow
+    let SIZE = CGFloat(2)
+    let borderColor = NSColor.red
 
     override func draw(_ dirtyRect: NSRect) {
         let rect = cleanRect(dirtyRect: dirtyRect, size: SIZE)
