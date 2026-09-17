@@ -35,6 +35,18 @@ class Utils: NSObject {
         event2?.post(tap: .cghidEventTap)
     }
     
+    static func commandLeftClickMouse(position: CGPoint) {
+        let event = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: position, mouseButton: .left)
+        let event2 = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: position, mouseButton: .left)
+        event?.setIntegerValueField(.mouseEventClickState, value: 1)
+        event2?.setIntegerValueField(.mouseEventClickState, value: 1)
+        event?.flags = .maskCommand
+        event2?.flags = .init()
+        event?.post(tap: .cghidEventTap)
+        event2?.post(tap: .cghidEventTap)
+    }
+
+
     static func doubleLeftClickMouse(position: CGPoint) {
         let event = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: position, mouseButton: .left)
         event?.setIntegerValueField(.mouseEventClickState, value: 1)
